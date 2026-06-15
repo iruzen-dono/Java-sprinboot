@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des utilisateurs</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 40px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        h1 {
+            color: #1a1a2e;
+            font-size: 24px;
+        }
+        .btn-add {
+            background: #1a1a2e;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-add:hover {
+            background: #16213e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f8f9fa;
+            color: #333;
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 14px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .btn-edit {
+            background: #4a6cf7;
+            color: white;
+            padding: 6px 14px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+            padding: 6px 14px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-left: 6px;
+        }
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+        
+        .btn-edit:hover {
+            background: #3b5de7;
+        }
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-logout {
+            color: #999;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Liste des utilisateurs</h1>
+        <div class="header-actions">
+            <a href="#" th:href="@{/users/add}" class="btn-add">+ Ajouter</a>
+            <a href="#" th:href="@{/logout}" class="btn-logout">Déconnexion</a>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Login</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">1</td>
+            <td th:text="${user.login}">admin</td>
+            <td th:text="${user.name}">Admin</td>
+            <td>
+                <a href="#" th:href="@{/users/edit/{id}(id=${user.id})}" class="btn-edit">Modifier</a>
+                <a href="#" th:href="@{/users/delete/{id}(id=${user.id})}" class="btn-delete">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Si la liste est vide -->
+    <div class="empty" th:if="${#lists.isEmpty(users)}">
+        Aucun utilisateur trouvé.
+    </div>
+</div>
+</body>
+</html>

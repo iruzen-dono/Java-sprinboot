@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un utilisateur</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 420px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1a1a2e;
+            font-size: 24px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74,108,247,0.1);
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-save {
+            flex: 1;
+            padding: 12px;
+            background: #1a1a2e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-save:hover {
+            background: #16213e;
+        }
+        .btn-cancel {
+            flex: 1;
+            padding: 12px;
+            background: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn-cancel:hover {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="form-box">
+    <h1>Ajouter un utilisateur</h1>
+
+    <form action="#" th:action="@{/users/add}" method="post" th:object="${user}">
+        <label for="login">Login</label>
+        <input type="text" id="login" name="login" placeholder="Login" required />
+
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" placeholder="Mot de passe" required />
+
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" name="name" placeholder="Nom complet" required />
+
+        <div class="btn-group">
+            <button type="submit" class="btn-save">Enregistrer</button>
+            <a href="#" th:href="@{/users}" class="btn-cancel">Annuler</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
