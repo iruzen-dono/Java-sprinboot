@@ -1,5 +1,7 @@
 # Java-sprinboot — Gestion d'Utilisateurs (Spring Boot 4.1.0)
 
+> ⚠️ **Projet d'apprentissage** — Identifiants de démo (`admin/admin`) en dur, à ne jamais utiliser en production.
+
 Application web Spring Boot permettant de gérer des utilisateurs (CRUD) avec authentification par session HTTP.
 
 ## Stack technique
