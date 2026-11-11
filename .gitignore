@@ -36,3 +36,4 @@ out/
 ### OS ###
 .DS_Store
 Thumbs.db
+.idea/vcs.xml
